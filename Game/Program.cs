@@ -7,10 +7,34 @@ namespace Game
     {
         static void Main(string[] args)
         {
+            /*Methods down below are control codes for program functionality.
+             You can see results by uncommenting 
+            */
+
             // PersonOperations();
             // ShowGames();
-           // CampaignOperations();
+            // CampaignOperations();
 
+            ValidationAddition();
+
+        }
+
+        private static void ValidationAddition()
+        {
+            Person gamer1 = new Gamer() { Id = 5, FirstName = "Tarık" };
+            IPersonManager personManager = new GamerManager(new PersonValidationManager());
+            personManager.Add(gamer1);
+
+            Person supplier1 = new Supplier()
+            {
+                Id = 6,
+                FirstName = "Beliz",
+                NationalityId = "111222333"
+
+
+            };
+            SupplierManager supplierManager = new SupplierManager(new PersonValidationManager());
+            supplierManager.Add(supplier1);
         }
 
         private static void CampaignOperations()
@@ -35,7 +59,7 @@ namespace Game
 
         private static void PersonOperations()
         {
-            IPersonManager personManager = new GamerManager();
+            IPersonManager personManager = new GamerManager(new PersonValidationManager());
 
             Person gamer = new Gamer()
             {
@@ -55,7 +79,7 @@ namespace Game
 
 
 
-            IPersonManager personManager1 = new SupplierManager();
+            IPersonManager personManager1 = new SupplierManager(new PersonValidationManager());
             personManager1.Add(new Supplier { Id = 2, FirstName = "Yeşim", LastName = "Varlı", NationalityId = "2223334444444", DateOfBirth = new DateTime(1978, 3, 2), TaxNumber = "11144445" });
 
 

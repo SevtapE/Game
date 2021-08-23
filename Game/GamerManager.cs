@@ -8,9 +8,25 @@ namespace Game
 {
     class GamerManager : IPersonManager
     {
+        IPersonValidationService _personValidationService;
+
+        public GamerManager(IPersonValidationService personValidationService)
+        {
+            _personValidationService = personValidationService;
+        }
+
         public void Add(Person person)
         {
-            Console.WriteLine(person.FirstName+ " is added to the Gamers");
+            if (_personValidationService.Validate(person)==true)
+            {
+                Console.WriteLine(person.FirstName + " is added to the Gamers");
+            }
+            else
+            {
+                Console.WriteLine(person.FirstName + " could not get validated");
+
+            }
+
         }
 
         public void Delete(Person person)

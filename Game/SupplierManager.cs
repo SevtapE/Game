@@ -8,9 +8,25 @@ namespace Game
 {
     class SupplierManager:IPersonManager
     {
+        IPersonValidationService _personValidationService;
+
+        public SupplierManager(IPersonValidationService personValidationService)
+        {
+            _personValidationService = personValidationService;
+        }
+
         public void Add(Person person)
         {
-            Console.WriteLine(person.FirstName + " is added to the Suppliers");
+            if (_personValidationService.Validate(person) == true)
+            {
+                Console.WriteLine(person.FirstName + " is added to the Suppliers");
+            }
+            else
+            {
+                Console.WriteLine(person.FirstName + " could not get validated.");
+
+            }
+            
         }
 
         public void Delete(Person person)

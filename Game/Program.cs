@@ -15,8 +15,37 @@ namespace Game
             // ShowGames();
             // CampaignOperations();
 
-            ValidationAddition();
+            // ValidationAddition();
 
+            MernisValidation();
+
+        }
+
+        private static void MernisValidation()
+        {
+            Person gamer1 = new Gamer()
+            {
+                Id = 9,
+                FirstName = "SEVTAP",
+                LastName = "E",
+                DateOfBirth = new DateTime(1987, 1, 1),
+                NationalityId = "1111111"
+            };
+            IPersonManager personManager = new GamerManager(new MernisPersonValidationManager());
+            personManager.Add(gamer1);
+
+            Person supplier1 = new Supplier()
+            {
+                Id = 6,
+                FirstName = "SEVTAP",
+                LastName = "E",
+                DateOfBirth = new DateTime(1988, 1, 1),
+                NationalityId = "222222222"
+
+
+            };
+            SupplierManager supplierManager = new SupplierManager(new MernisPersonValidationManager());
+            supplierManager.Add(supplier1);
         }
 
         private static void ValidationAddition()
